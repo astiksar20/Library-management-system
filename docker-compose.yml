@@ -1,0 +1,18 @@
+services:
+  library:
+    build: .
+    image: library-management-system:latest
+    container_name: library-management-system
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      # Locked out? Set a new password for the "admin" account, restart, sign in,
+      # then remove this line and restart again:
+      # - LMS_RESET_ADMIN=new-password-here
+    volumes:
+      - library-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  library-data:
